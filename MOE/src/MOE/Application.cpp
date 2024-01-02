@@ -4,7 +4,6 @@
 
 #include "Application.h"
 
-
 namespace MOE {
     Application::Application() {
         std::cout << "Hello Application" << std::endl;
