@@ -6,6 +6,7 @@
 #define MOE_APPLICATION_H
 
 #include <iostream>
+#include <stb/stb_image.h>
 
 namespace MOE {
     class Application {
