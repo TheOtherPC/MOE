@@ -7,7 +7,6 @@
 
 #include <iostream>
 
-
 namespace MOE {
     class Application {
     public:

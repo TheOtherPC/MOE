@@ -1,0 +1,6 @@
+[submodule "MOE/vendor/glfw"]
+	path = MOE/vendor/glfw
+	url = https://github.com/glfw/glfw
+[submodule "MOE/vendor/glm"]
+	path = MOE/vendor/glm
+	url = https://github.com/g-truc/glm
