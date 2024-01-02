@@ -13,3 +13,5 @@ add_library(${PROJECT_NAME} SHARED
 )
 
 target_link_libraries(${PROJECT_NAME} glad glfw)
+
+#include_directories(../vendor)
