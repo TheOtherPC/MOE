@@ -3,7 +3,7 @@ project(MOE)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(${PROJECT_NAME} SHARED
+add_library(${PROJECT_NAME} STATIC
         MOE.h
         MOE/Application.cpp
         MOE/Application.h
@@ -12,6 +12,7 @@ add_library(${PROJECT_NAME} SHARED
         MOE/EntryPoint.h
 )
 
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 target_link_libraries(${PROJECT_NAME} glad glfw)
 
 #include_directories(../vendor)
