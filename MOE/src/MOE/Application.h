@@ -17,12 +17,6 @@
 #include "Input.h"
 
 namespace MOE {
-//    struct EntityStruct {
-//        Model model;
-//        std::vector<std::function<glm::mat4(glm::mat4)>> transforms;
-//        float mass;
-//        EntityStruct(Model, std::vector<std::function<glm::mat4(glm::mat4)>>, float);
-//    };
     class Application {
     public:
         Application();
