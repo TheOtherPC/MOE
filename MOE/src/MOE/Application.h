@@ -6,14 +6,22 @@
 #define MOE_APPLICATION_H
 
 #include <iostream>
+#include <functional>
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include "Renderer/Renderer.h"
+#include "Physics/Physics.h"
+#include "Entity.h"
+#include "Input.h"
 
 namespace MOE {
     class Application {
     public:
         Application();
 
-        ~Application();
+        virtual ~Application();
 
         void Run();
 
