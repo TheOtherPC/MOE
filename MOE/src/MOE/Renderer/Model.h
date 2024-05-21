@@ -39,11 +39,15 @@ namespace MOE {
 
 //        Model(std::string const &path, bool gamma = false);
         Model(std::string const &path, bool inverted, bool gamma = false);
+        Model(std::string const &path, bool inverted, glm::vec3 s, bool gamma = false);
 
         void draw(Shader &shader);
+        std::pair<glm::vec3, glm::vec3> boundingBox;
 
     private:
+        const aiScene* scene;
         bool flipTextures;
+        glm::vec3 scale;
         void loadModel(std::string const &path);
 
         void processNode(aiNode *node, const aiScene *scene);

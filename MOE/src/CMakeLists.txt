@@ -24,6 +24,8 @@ add_library(${PROJECT_NAME} STATIC
         MOE/Physics/Physics.h
         MOE/Entity.cpp
         MOE/Entity.h
+        MOE/Audio/Audio.cpp
+        MOE/Audio/Audio.h
 )
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
@@ -32,7 +34,9 @@ add_library(${PROJECT_NAME} STATIC
 #        ${BULLET_PHYSICS_SOURCE_DIR}/src
 #)
 include_directories(${CMAKE_SOURCE_DIR}/vendor/bullet/src)
-target_link_libraries(${PROJECT_NAME} glad glfw assimp BulletDynamics BulletCollision LinearMath)
+include_directories(${CMAKE_SOURCE_DIR}/vendor/openal-soft/core)
+
+target_link_libraries(${PROJECT_NAME} glad glfw assimp sndfile OpenAL BulletDynamics BulletCollision LinearMath)
 configure_file(MOE/Renderer/shaders/shader.frag ${CMAKE_BINARY_DIR}/MOE/src COPYONLY)
 configure_file(MOE/Renderer/shaders/shader.vert ${CMAKE_BINARY_DIR}/MOE/src COPYONLY)
 

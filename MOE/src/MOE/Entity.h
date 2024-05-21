@@ -19,8 +19,15 @@ namespace MOE {
         Model model;
         std::vector<std::function<glm::mat4(glm::mat4)>> transforms;
         float mass;
+        glm::vec3 pos;
+        EntityStruct(Model, std::vector<std::function<glm::mat4(glm::mat4)>>, float, glm::vec3);
+    };
 
-        EntityStruct(Model, std::vector<std::function<glm::mat4(glm::mat4)>>, float);
+    class Entity {
+    public:
+        static void updatePositions();
+        static std::vector<EntityStruct> entities;
+
     };
 }
 

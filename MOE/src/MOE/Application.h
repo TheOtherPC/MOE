@@ -13,6 +13,7 @@
 
 #include "Renderer/Renderer.h"
 #include "Physics/Physics.h"
+#include "Audio/Audio.h"
 #include "Entity.h"
 #include "Input.h"
 

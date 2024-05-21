@@ -7,6 +7,9 @@
 
 
 #include <bullet3/src/btBulletDynamicsCommon.h>
+#include <glm/glm.hpp>
+
+#include <vector>
 //#include <btBulletDynamicsCommon.h>
 //#include <bullet3/src/btBulletCollisionCommon.h>
 //#include <bullet3/src/btBroadphaseInterface.h>
@@ -18,6 +21,8 @@ namespace MOE {
         static void Run();
         static void ShutDown();
         static void SetWorld();
+        static void AddObject(std::pair<glm::vec3, glm::vec3>, float, glm::vec3);
+        static std::vector<glm::vec3> GetPositions();
     private:
         static btDefaultCollisionConfiguration* collisionConfiguration;
         static btCollisionDispatcher* dispatcher;

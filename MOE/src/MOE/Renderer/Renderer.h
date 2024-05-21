@@ -46,8 +46,12 @@ namespace MOE {
         static float lastFrame;
         static bool endRenderer();
         static std::vector<ModelStruct> modelstructs;
+        static std::vector<glm::vec3> positions;
+        static void RenderBoxes(std::pair<glm::vec3, glm::vec3>);
+        static void initBox();
 
     private:
+        static unsigned int boxVAO, boxVBO;
         static float lastX, lastY, SCR_WIDTH, SCR_HEIGHT;
         static std::vector<std::pair<Model, std::vector<std::function<glm::mat4(glm::mat4)>>>> models;
         static void framebuffer_size_callback(GLFWwindow* window, int width, int height);

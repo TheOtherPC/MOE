@@ -20,6 +20,17 @@ namespace MOE{
         std::cout << "ALSO ALSO LOOK HERE: " << Model::flipTextures << std::endl;
     }
 
+    Model::Model(const std::string &path, bool inverted, glm::vec3 s, bool gamma) {
+//        if(Model::flipTextures) {std::cout << "inverted" << std::endl;
+//            stbi_set_flip_vertically_on_load(true);}
+//        else {std::cout << "not inverted" << std::endl;
+//            stbi_set_flip_vertically_on_load(false);}
+        Model::flipTextures = inverted;
+        Model::scale = s;
+        loadModel(path);
+        std::cout << "ALSO ALSO LOOK HERE: " << Model::flipTextures << std::endl;
+    }
+
     void Model::draw(Shader &shader) {
         for(unsigned int i = 0; i < meshes.size(); i++) {
             meshes[i].Draw(shader);
@@ -31,7 +42,8 @@ namespace MOE{
 //        if(Model::flipTextures) {stbi_set_flip_vertically_on_load(true); std::cout<<"flipped"<<std::endl;}
 //        else {stbi_set_flip_vertically_on_load(false); std::cout<<"not flipped"<<std::endl;}
         Assimp::Importer importer;
-        const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+//        const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+        Model::scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
         // check for errors
         if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
         {
@@ -67,6 +79,8 @@ namespace MOE{
         std::vector<unsigned int> indices;
         std::vector<Texture> textures;
 
+        glm::vec3 min(float(INT_MAX));
+        glm::vec3 max(float(INT_MIN));
         // walk through each of the mesh's vertices
         for(unsigned int i = 0; i < mesh->mNumVertices; i++)
         {
@@ -77,6 +91,13 @@ namespace MOE{
             vector.y = mesh->mVertices[i].y;
             vector.z = mesh->mVertices[i].z;
             vertex.Position = vector;
+
+            min.x = std::min(min.x, vector.x);
+            min.y = std::min(min.y, vector.y);
+            min.z = std::min(min.z, vector.z);
+            max.x = std::max(max.x, vector.x);
+            max.y = std::max(max.y, vector.y);
+            max.z = std::max(max.z, vector.z);
             // normals
             if (mesh->HasNormals())
             {
@@ -110,6 +131,11 @@ namespace MOE{
 
             vertices.push_back(vertex);
         }
+//        Model::boundingBox(max, min);
+//        std::cout << "BoundingBox Min: " << min.x << min.y << min.z << std::endl;
+//        std::cout << "BoundingBox Max: " << max.x << max.y << max.z << std::endl;
+        Model::boundingBox.first = min;
+        Model::boundingBox.second = max;
         // now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
         for(unsigned int i = 0; i < mesh->mNumFaces; i++)
         {

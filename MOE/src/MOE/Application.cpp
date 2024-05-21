@@ -12,21 +12,26 @@ namespace MOE {
         std::cout << "Hello Application" << std::endl;
         Renderer::Init();
         Physics::Init();
+        Audio::Init();
     }
     Application::~Application() {
         Renderer::ShutDown();
         Physics::ShutDown();
+        Audio::ShutDown();
         std::cout << "Goodbye Application" << std::endl;
     }
 
     void Application::Run() {
         std::cout << "Run Application" << std::endl;
-//        while(!Renderer::endRenderer()){
 //        Physics::SetWorld();
         while(!glfwWindowShouldClose(Renderer::window)){
-            Renderer::Run();
             Input::ProcessInput(Renderer::window);
             Physics::Run();
+            Entity::updatePositions();
+            Renderer::positions = Physics::GetPositions();
+//            Renderer::initBox();
+//            std::cout << Renderer::positions[1].x << Renderer::positions[1].y << Renderer::positions[1].z;
+            Renderer::Run();
         }
     }
 

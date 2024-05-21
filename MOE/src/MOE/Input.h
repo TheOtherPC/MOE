@@ -11,7 +11,6 @@
 #include <GLFW/glfw3.h>
 
 namespace MOE {
-    //Add 32 to key codes
     enum KEYS {
        SPACE = 32, APOSTROPHE = 39, COMMA = 44, MINUS = 45, PERIOD = 46, SLASH = 47,
        ZERO = 48, ONE = 49, TWO = 50, THREE = 51, FOUR = 52, FIVE = 53, SIX = 54, SEVEN = 55, EIGHT = 56, NINE = 57,
